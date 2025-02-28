@@ -36,7 +36,10 @@ oc get pods
 With your pod deployed you will need to login into ACS
 
 Navigate from the main ui to the 'Risk' section
-![Alt text](images/example.png) https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/risks.jpg
+
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/risks.jpg)
+
+
 If you just deployed your app or used the oc debug command to quickly find the deployment by sorting by Created which is a date / time of when the deployment was created.
 
 You'll notice a Priority number on the side, this is the 'percieved' risk value the pod.  You'll likely have a fairly high number here.  The lower the number here the 'higher' the risk.
