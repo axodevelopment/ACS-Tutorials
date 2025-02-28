@@ -85,4 +85,48 @@ If you have done it correctly it should look like...
 
 ## Lets create a policy
 
+First we should note it is best practice to clone a policy instead of editing a System policy (System policies are ones that are pre defined and come with ACS).
 
+To see policies we should navigate from Platform Configuration -> Policy Management.
+
+What we want to do is to react to the anomalous activity that we are generating at runtime.
+
+The filters on this page have many options but for now select policy and then fine this policy "Unauthorized Process Execution"
+
+On the right side of this you see 3 dot notation for actions, lets 'Clone' the policy.  Use all default values for now.
+
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/clone-policy.jpg)
+
+For now, lets click on the clone policy and then in the 'Actions' we will 'Edit policy'
+
+For the 'Details' explore these items and edit these as you see fit except keep the Categories as is.
+
+There are two areas I really want to highlight the first is the Lifecycle
+
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/lifecycle.jpg)
+
+You'll see 3 stages here Build, Deploy, Runtime...
+
+In general how this works is at which stage do you want ACS to evaluate and react to this.  In this particular process, the policy can really on be done at runtime.  But why, well it has to do with what these stages mean.
+
+"Build" stage is triggered before deployment, meaning in your CI.  You can use the roxctl to integrate ACS to activities outside of something running in OCP think of a build pipeline hence the name.
+
+"Deploy" stage is triggered when a new deployment is deployed to the cluster.  Behind the scenes ACS uses an admissionwebhook to trigger the scan as the workload is being deployed.
+
+"Runtime" stage is triggered by the live monitoring of workloads in the cluster.
+
+These stages allow you to expand the 'safety net' behind to just whats in your secured clusters.
+
+The next section to look at is the actions section.
+
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/actions.jpg)
+
+Enforcement is how do you want the policy to react, do you want to just inform when that policy is triggered or do you want it to enforce as well.  In this case for runtime anomalous behaviors when set to enforce it will terminate any pod violating that.
+
+Lets set the Enformcement to Informat and Enforce, lets set the policy to be Enabled and then hit the radio button of the Runtime under Confirgure enforcement behavior to be toggled on.
+
+# With that lets see the enforcement.
+
+If you go back into your pod and then attempt the microdnf instal openssl command again, since it is marked specifically as not in the baseline of the pod and the baseline is locked the pod will be evicted.
+
+As a cleanup process you will want to revert any changes into a safe state for your ACS pre tutorial.
