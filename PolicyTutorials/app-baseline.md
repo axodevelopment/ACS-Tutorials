@@ -15,7 +15,7 @@ oc new-project acs-demos
 When I refer to my app or pod I mean the following
 
 ```bash
-oc debug --image=registry.access.redhat.com/ubi8/ubi-minimal -n acs-demos
+oc debug --image=axodevelopment/artemistools:v1.0.0.3 -n acs-demos
 ```
 
 ## Begin Tutorial - Logging in with OC
@@ -32,6 +32,8 @@ If you are following the tutorial you will need to know the pod name
 ```bash
 oc get pods
 ```
+
+## Lets start looking at ACS
 
 With your pod deployed you will need to login into ACS
 
@@ -52,4 +54,35 @@ Click on your deployment name.
 
 On the right pane, you'll see Risk Indicators, Deployment Details, Process Discovery.  For now we will be focusing on Process Discovery...
 
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/process-discovery.jpg)
+
 Click on Process Discovery.
+
+Under event timeline you'll see View Graph.
+
+For the moment explore this section.
+
+Note here there is a History of Running Processes.  ACS will monitor what processes are running and generate a history / timeline of these activities.
+
+Below that is the Spec Container Baseline.  This is the current known process that "MAY" become a baseline.  Right now you'll notice that this is currently an unlocked baseline you can see that buy clicking the lock buttons on and off, before you continue leave it unlocked atm.
+
+Inside your pod, from earlier do the following a few times.  If your app doesn't use microdnf use whatever is appropriate...
+
+```bash
+microdnf install openssl
+```
+In most images this won't actually do anything because you are not usually running as a root user ie you shouldnt have USER 0 typically...
+
+This process will take a few seconds to get captured and processed by ACS.
+
+What we want to do is tell ACS what is abnormal about this and create a baseline for ACS to compare to, in this case you want to click the [-] on the /usr/bin/microdnf from the baseline.
+
+Then you want to LOCK the baseline.  Locking the baseline means that ACS will actually evaluate the process.  IT MUST BE LOCKED.  To continue.
+
+If you have done it correctly it should look like...
+
+![Risk](https://github.com/axodevelopment/ACS-Tutorials/blob/main/images/baseline-locked.jpg)
+
+## Lets create a policy
+
+
