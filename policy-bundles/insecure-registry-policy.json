@@ -1,0 +1,55 @@
+{
+  "policies": [
+      {
+          "name": "Insecure HTTP Registry",
+          "description": "Detect deployments using container images from insecure HTTP registries",
+          "rationale": "Using HTTP instead of HTTPS for container registries exposes your infrastructure to man-in-the-middle attacks, credential theft, and tampering with container images during pull operations",
+          "remediation": "Use only HTTPS-enabled registries for all container images. Update image references to use secure registries or enable HTTPS on your registry server",
+          "disabled": false,
+          "categories": [
+              "DevOps Best Practices",
+              "Security Best Practices"
+          ],
+          "lifecycleStages": [
+              "BUILD",
+              "DEPLOY"
+          ],
+          "eventSource": "NOT_APPLICABLE",
+          "exclusions": [],
+          "scope": [],
+          "severity": "HIGH_SEVERITY",
+          "enforcementActions": [
+              "FAIL_BUILD_ENFORCEMENT",
+              "SCALE_TO_ZERO_ENFORCEMENT"
+          ],
+          "notifiers": [],
+          "lastUpdated": null,
+          "SORTName": "",
+          "SORTLifecycleStage": "",
+          "SORTEnforcement": false,
+          "policyVersion": "1.1",
+          "policySections": [
+              {
+                  "sectionName": "Rule 1",
+                  "policyGroups": [
+                      {
+                          "fieldName": "Image Registry",
+                          "booleanOperator": "OR",
+                          "negate": false,
+                          "values": [
+                              {
+                                  "value": "^http://"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ],
+          "mitreAttackVectors": [],
+          "criteriaLocked": false,
+          "mitreVectorsLocked": false,
+          "isDefault": false,
+          "source": "IMPERATIVE"
+      }
+  ]
+}
