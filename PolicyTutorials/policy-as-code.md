@@ -135,3 +135,6 @@ data:
     p, rh-ee-michwils, repositories, delete, *, allow
   policy.default: role:readonly
 ```
+
+Then rollout the access changes especially if you are updating the configmap.
+

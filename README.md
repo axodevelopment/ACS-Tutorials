@@ -37,8 +37,8 @@ High level examples of various types of brokers with different auth and settings
 |--------------------|--------------------------------|------------------|
 | general-policy     | General overview of app with vulernability    | In Progress          |
 | app-baseline       | Anomolous Activity Policy Detection      | In Progress          |
-
-
+| exploring-api      | How can we call the api and some interesting items      | In Progress          |
+| policy-as-code      | How can we manage our policies in a repo as policy as code     | In Progress          |
 
 
 # reference documents
