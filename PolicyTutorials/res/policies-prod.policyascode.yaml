@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2025-03-05T02:16:44Z"
+  generation: 49
+  name: policies-prod
+  namespace: openshift-gitops
+  resourceVersion: "58748114"
+  uid: 60987dbf-3c56-40e5-abee-0ff768afb799
+spec:
+  destination:
+    namespace: stackrox
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: PolicyAsCode
+    repoURL: https://github.com/axodevelopment/ACS-Tutorials.git
+    targetRevision: prod

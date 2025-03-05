@@ -1,0 +1,28 @@
+kind: SecurityPolicy
+apiVersion: config.stackrox.io/v1alpha1
+metadata:
+  name: insecure-http-registry
+spec:
+  policyName: Insecure HTTP Registry
+  categories:
+  - DevOps Best Practices
+  - Security Best Practices
+  description: Detect deployments using container images from insecure HTTP registries
+  disabled: true
+  remediation: Use only HTTPS-enabled registries for all container images. Update image references to use secure registries or enable HTTPS on your registry server
+  lifecycleStages:
+  - BUILD
+  - DEPLOY
+  enforcementActions:
+  - FAIL_BUILD_ENFORCEMENT
+  - SCALE_TO_ZERO_ENFORCEMENT
+  severity: HIGH_SEVERITY
+  policySections:
+  - sectionName: Check Repo Protocol
+    policyGroups:
+    - fieldName: Image Registry
+      booleanOperator: OR
+      negate: false
+      values:
+      - value: ^http://
+  rationale: Using HTTP instead of HTTPS for container registries exposes your infrastructure to man-in-the-middle attacks, credential theft, and tampering with container images during pull operations
