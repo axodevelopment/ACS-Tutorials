@@ -30,7 +30,7 @@
           "policyVersion": "1.1",
           "policySections": [
               {
-                  "sectionName": "Rule 1",
+                  "sectionName": "Check Repo Protocol",
                   "policyGroups": [
                       {
                           "fieldName": "Image Registry",
