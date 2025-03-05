@@ -69,6 +69,8 @@ Here is an additional
 
 The `jq` tool can be used here to get some interesting data.  
 
+With this we can collect the image data and reduce the total size of data.  Lets get the images we've scanned, list the cvecount and get the highest vcss and the list of the vulnerabilities.
+
 ```bash
 curl -k -X GET "https://$ROX_CENTRAL_ADDRESS/v1/export/images" \
   -H "Authorization: Bearer $ROX_API_TOKEN" | \
@@ -80,7 +82,7 @@ curl -k -X GET "https://$ROX_CENTRAL_ADDRESS/v1/export/images" \
       cve: .cve,
       cvss: .cvss,
       severity: .severity
-    }] | sort_by(-.cvss) | unique_by(.cve) | .[0:10]  # Limit to top 10 vulnerabilities
+    }] | sort_by(-.cvss) | unique_by(.cve) | .[0:10] 
   }'
 ```
 
