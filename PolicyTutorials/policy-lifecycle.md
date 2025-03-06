@@ -176,3 +176,9 @@ From the above information we should be able to predict what the behavior should
 
 Ok now that we have an idea of what types of enforcmenets can happen and when they may be applied... Lets see it in action.
 
+To do these tests I have two argo apps, one for when we update the Policy and one for the project, I'll set them to manual update for now.
+
+They are located at `PolicyTutorials/res/app-dep/*`
+
+With both app and policy deployed we can begin our tests...
+

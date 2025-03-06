@@ -7,7 +7,7 @@ spec:
   categories:
   - Package Management
   description: 'This policy checks for container images containing netcat'
-  disabled: false
+  disabled: true
   remediation: Use the base image package manager to remove "nmap-ncat"
   lifecycleStages:
   - BUILD
