@@ -190,4 +190,10 @@ We can update enforcementActions, push to our repo that change then we can run t
 | FAIL_DEPLOYMENT_UPDATE_ENFORCEMENT | DEPLOY* | Block Deployment Update |
 
 
-For this as we mentioned before some irregular behaviors for example when you go to the OCP UI
+For this as we mentioned before some irregular behaviors for example when you go to the OCP UI and you do a scaleup operation it is not part of the operations looked at by the webhook
+
+```bash
+    operations:
+    - CREATE
+    - UPDATE
+```
