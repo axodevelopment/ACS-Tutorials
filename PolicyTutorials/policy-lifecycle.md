@@ -182,3 +182,12 @@ They are located at `PolicyTutorials/res/app-dep/*`
 
 With both app and policy deployed we can begin our tests...
 
+We can update enforcementActions, push to our repo that change then we can run the app changes.
+
+|Action|Stage|Expected Result|
+|---|---|---|
+| FAIL_DEPLOYMENT_CREATE_ENFORCEMENT | DEPLOY* | Block Deployment Create |
+| FAIL_DEPLOYMENT_UPDATE_ENFORCEMENT | DEPLOY* | Block Deployment Update |
+
+
+For this as we mentioned before some irregular behaviors for example when you go to the OCP UI
